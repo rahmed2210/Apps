@@ -16,11 +16,5 @@ const todos = [
       completed: true,
     }]
 
-const paragraphs = document.querySelectorAll('p')
-
-// removed tag the contain 'the'
-paragraphs.forEach(function (paragraphs) {
-    if (paragraphs.textContent.includes('the')) {
-        paragraphs.remove()
-    }
-})
+// you have 2 todo left (p element)
+// add a p each to todo above (use text vaule)

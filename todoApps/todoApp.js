@@ -16,5 +16,20 @@ const todos = [
       completed: true,
     }]
 
-// you have 2 todo left (p element)
-// add a p each to todo above (use text vaule)
+// Summary Message
+const incompleteTodos = todos.filter(function (todo) {
+  return !todo.completed
+})
+
+const Summary = document.createElement('h2')
+Summary.textContent = `You have ${incompleteTodos.length} todos left`
+document.querySelector('body').appendChild(Summary)
+
+
+// ---> forEach  <----
+// Print a new paragraph for each todos (use text value)
+todos.forEach(function (todo) {
+  const p = document.createElement('p')
+  p.textContent = todo.text
+  document.querySelector('body').appendChild(p)
+})

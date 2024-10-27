@@ -5,40 +5,56 @@ const todos = [{
     text: 'Clean kitchen',
     completed: true
 }, {
-    text: 'Buy food',
+    text: 'Buy Food',
     completed: true
 }, {
     text: 'Do work',
     completed: false
 }, {
     text: 'Exercise',
-    completed: true
+    completed:true
 }]
 
-// incomplete todos
-const incompleteTodos = todos.filter(function (todo) {
-    return !todo.completed
-})
+const filters = {
+searchText: ''
+}
 
-const summary = document.createElement('h2')
-summary.textContent =`You have ${incompleteTodos.length} todos left`
-document.querySelector('body').appendChild(summary)
+const renderTodos = function (todos, filters) {
+    const filteredTodos = todos.filter(function (todo) {
+        return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+    })
 
-todos.forEach(function (todo) {
-    const p = document.createElement('p')
-    p.textContent = todo.text
-    document.querySelector('body').appendChild(p)
-})
+    // incomplete todos
+    const incompleteTodos = filteredTodos.filter(function (todo) {
+        return !todo.completed
+    })
 
-// ID and Class elements
+    document.querySelector('#todos').innerHTML = ''
+
+    const summary = document.createElement('h2')
+    summary.textContent = `You have ${incompleteTodos.length} todos left`
+    document.querySelector('#todos').appendChild(summary)
+
+    filteredTodos.forEach(function (todo) {
+        const p = document.createElement('p')
+        p.textContent = todo.text
+        document.querySelector('#todos').appendChild(p)
+    })
+}
+
+renderTodos(todos, filters)
+
+// Listen for new todo creation
 document.querySelector('#add-todo').addEventListener('click', function (e) {
-    console.log('Add a new todo')
+console.log('Add a new todo...')
 })
 
-// Input Text  --> Listen for todo text change
+// Listen for todo text change
 document.querySelector('#new-todo-text').addEventListener('input', function (e) {
-    console.log(e.target.value)
+console.log(e.target.value)
 })
 
-
-// Rendering Our Filtered Data
+document.querySelector('#search-text').addEventListener('input', function (e) {
+filters.searchText = e.target.value
+renderTodos(todos, filters)
+})

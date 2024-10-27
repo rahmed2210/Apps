@@ -53,24 +53,3 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
     renderNotes(notes, filters)
 })
 
-
-
-/*
-// User Interaction
-document.querySelector('#create-note').addEventListener('click', function (e) {
-    e.target.textContent = 'The button was clicked'
-})
-
-// ID and Class elements
-document.querySelector('#remove-all').addEventListener('click', function () {
-    document.querySelectorAll('.note').forEach(function( note) {
-        note.remove()
-    })
-})
-
-// text Input and Data Filtering
-document.querySelector('#search-text').addEventListener('input', function (e) {
-    console.log(e.target.value)
-})
-
-*/

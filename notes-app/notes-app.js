@@ -10,8 +10,6 @@ const notes = [{
 }]
 
 // Rendering Our Filtered Data
-
-// setting up a filters objects to store the latest filters
 const filters = {
     searchText: ''
 }
@@ -33,18 +31,9 @@ const renderNotes = function (notes, filters) {
 
 renderNotes(notes, filters)
 
-
-// ---
 // User Interaction
 document.querySelector('#create-note').addEventListener('click', function (e) {
     e.target.textContent = 'The button was clicked'
-})
-
-// ID and Class elements
-document.querySelector('#remove-all').addEventListener('click', function () {
-    document.querySelectorAll('.note').forEach(function( note) {
-        note.remove()
-    })
 })
 
 // text Input and Data Filtering
@@ -53,3 +42,9 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
     renderNotes(notes, filters)
 })
 
+document.querySelector('#name-form').addEventListener('submit', function (e) {
+// Cancel the default behavior of the form 
+    e.preventDefault()
+    console.log(e.target.elements.firstName.value)
+    e.target.elements.firstName.value = ''
+})

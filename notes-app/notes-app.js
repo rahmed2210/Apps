@@ -1,33 +1,16 @@
-const notes = [{
-    title: 'My next trip',
-    body: 'I would like to go to Spain'
-}, {
-    title: 'Habbits to work on',
-    body: 'Exercise. Eating a bit better.'
-}, {
-    title: 'Office modification',
-    body: 'Get a new seat'
-}]
+let notes = []
 
 // Rendering Our Filtered Data
 const filters = {
     searchText: ''
 }
-/*
-Saving Data in LocalStorage
-CRUD Operations --> Stands for Create, Read, Update and delete
 
-/*
-const user = {
-    name: 'rubal',
-    age: 43
+// check for existing saved data
+const notesJSON = localStorage.getItem('notes')
+
+if (notesJSON !== null) {
+    notes = JSON.parse(notes)
 }
-*/
-
-const userJSON = localStorage.getItem('user')
-const user = JSON.parse(userJSON)
-console.log(`${user.name} is ${user.age}`)
-
 
 const renderNotes = function (notes, filters) {
     const filteredNotes = notes.filter(function (note) {
@@ -39,7 +22,13 @@ const renderNotes = function (notes, filters) {
     
     filteredNotes.forEach(function (note) {
         const noteEl = document.createElement('p')
-        noteEl.textContent = note.title
+
+        if (note.title.length > 0) {
+            noteEl.textContent = note.title
+        } else {
+            noteEl.textContent = 'Unamed note'
+        }
+        
         document.querySelector('#notes').appendChild(noteEl)
     })
 }
@@ -48,7 +37,16 @@ renderNotes(notes, filters)
 
 // User Interaction
 document.querySelector('#create-note').addEventListener('click', function (e) {
-    e.target.textContent = 'The button was clicked'
+    // want to push the new item on to the notes array
+    notes.push({
+        title: '',
+        body: ''
+    }) 
+    // save the new notes array to local storage
+    localStorage.setItem('notes', JSON.stringify(notes))
+    // rerender things
+    renderNotes(notes, filters)
+
 })
 
 // text Input and Data Filtering

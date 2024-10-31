@@ -13,6 +13,21 @@ const notes = [{
 const filters = {
     searchText: ''
 }
+/*
+Saving Data in LocalStorage
+CRUD Operations --> Stands for Create, Read, Update and delete
+
+/*
+const user = {
+    name: 'rubal',
+    age: 43
+}
+*/
+
+const userJSON = localStorage.getItem('user')
+const user = JSON.parse(userJSON)
+console.log(`${user.name} is ${user.age}`)
+
 
 const renderNotes = function (notes, filters) {
     const filteredNotes = notes.filter(function (note) {

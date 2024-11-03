@@ -1,36 +1,8 @@
-let notes = []
+const notes = getSavedNotes()
 
 // Rendering Our Filtered Data
 const filters = {
     searchText: ''
-}
-
-// check for existing saved data
-const notesJSON = localStorage.getItem('notes')
-
-if (notesJSON !== null) {
-    notes = JSON.parse(notes)
-}
-
-const renderNotes = function (notes, filters) {
-    const filteredNotes = notes.filter(function (note) {
-        return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
-    })
-
-    // Duplicate Notes (filtering) --clear div entirely when adding new notes
-    document.querySelector('#notes').innerHTML = ''
-    
-    filteredNotes.forEach(function (note) {
-        const noteEl = document.createElement('p')
-
-        if (note.title.length > 0) {
-            noteEl.textContent = note.title
-        } else {
-            noteEl.textContent = 'Unamed note'
-        }
-        
-        document.querySelector('#notes').appendChild(noteEl)
-    })
 }
 
 renderNotes(notes, filters)
@@ -42,8 +14,7 @@ document.querySelector('#create-note').addEventListener('click', function (e) {
         title: '',
         body: ''
     }) 
-    // save the new notes array to local storage
-    localStorage.setItem('notes', JSON.stringify(notes))
+    saveNotes(notes)
     // rerender things
     renderNotes(notes, filters)
 

@@ -11,6 +11,7 @@ renderNotes(notes, filters)
 document.querySelector('#create-note').addEventListener('click', function (e) {
     // want to push the new item on to the notes array
     notes.push({
+        id: uuidv4(),
         title: '',
         body: ''
     }) 

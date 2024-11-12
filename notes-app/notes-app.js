@@ -18,6 +18,7 @@ document.querySelector('#create-note').addEventListener('click', function (e) {
     saveNotes(notes)
     // rerender things
     renderNotes(notes, filters)
+    location.assign('/notes-app/index.html')
 
 })
 

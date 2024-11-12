@@ -9,16 +9,15 @@ renderNotes(notes, filters)
 
 // User Interaction
 document.querySelector('#create-note').addEventListener('click', function (e) {
+    const id = uuidv4()
     // want to push the new item on to the notes array
     notes.push({
-        id: uuidv4(),
+        id: id,
         title: '',
         body: ''
     }) 
     saveNotes(notes)
-    // rerender things
-    renderNotes(notes, filters)
-    location.assign('/notes-app/index.html')
+    location.assign(`/notes-app/index.html#${id}`)
 
 })
 

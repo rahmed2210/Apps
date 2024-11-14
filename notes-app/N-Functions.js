@@ -47,7 +47,8 @@ const generateNoteDOM = function (note) {
     } else {
         textEl.textContent = 'Unamed note'
     }
-    textEl.setAttribute('href', `/notes-app/index.html#${note.id}`)
+
+    textEl.setAttribute('href', `./index.html#${note.id}`)
     noteEl.appendChild(textEl)
 
     return noteEl
@@ -66,4 +67,5 @@ const renderNotes = function (notes, filters) {
         const noteEl = generateNoteDOM(note)
         document.querySelector('#notes').appendChild(noteEl)
     })
+    
 }

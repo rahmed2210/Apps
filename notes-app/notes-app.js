@@ -1,4 +1,4 @@
-const notes = getSavedNotes()
+let notes = getSavedNotes()
 
 // Rendering Our Filtered Data
 const filters = {
@@ -30,4 +30,13 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
 // Dropdowns menu
 document.querySelector('#filter-by').addEventListener('change', function (e) {
     console.log(e.target.value)
+})
+
+window.addEventListener('storage', function (e) {
+    if (e.key === 'notes') {
+        // 1. Parse the new data and update notes
+        notes = JSON.parse(e.value)
+        // 2. rerender the notes
+        renderNotes(notes, filters)
+    }
 })

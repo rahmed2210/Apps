@@ -10,11 +10,14 @@ renderNotes(notes, filters)
 // User Interaction
 document.querySelector('#create-note').addEventListener('click', function (e) {
     const id = uuidv4()
+    const timeStamp = moment().valueOf()
     // want to push the new item on to the notes array
     notes.push({
         id: id,
         title: '',
-        body: ''
+        body: '',
+        createdAt: timeStamp,
+        updatedAt: timeStamp
     }) 
     saveNotes(notes)
     location.assign(`./edit.html#${id}`)
@@ -41,19 +44,6 @@ window.addEventListener('storage', function (e) {
     }
 })
 
-const now = moment()
-now.add(1, 'year').subtract(20, 'days')
-console.log(now.toString())
-//now.minute(23)
-console.log(now.format('MMMM Qo, YYYY'))
-// November 3rd, 2030
-console.log(now.fromNow)
-const nowTimeStamp = now.valueOf()
-console.log(nowTimeStamp)
-
-console.log(moment(nowTimeStamp).toString())
-
-
-
-
-//moments
+// 1. add createAt and updateAt to the new notes (store timestamp)
+// 2. Update updateAt when someone edits a title or body
+// 3. Delete all all notes before testing

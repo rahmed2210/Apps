@@ -43,7 +43,3 @@ window.addEventListener('storage', function (e) {
         renderNotes(notes, filters)
     }
 })
-
-// 1. add createAt and updateAt to the new notes (store timestamp)
-// 2. Update updateAt when someone edits a title or body
-// 3. Delete all all notes before testing

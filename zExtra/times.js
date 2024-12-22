@@ -28,3 +28,8 @@ if (dateOneTimeStamp < dateTwoTimeStamp) {
 } else if (dateTwoTimeStamp < dateOneTimeStamp) {
     console.log(dateTwo.toString())
 }
+
+
+const birthday = moment()
+birthday.year(1981).month(7).date(23)
+console.log(birthday.format('MMM D, YYYY'))
